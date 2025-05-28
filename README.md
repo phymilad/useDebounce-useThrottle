@@ -1,54 +1,107 @@
-# React + TypeScript + Vite
+# 🔁 useDebounce vs useThrottle - React Hooks Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React app that demonstrates the difference between two powerful performance optimization hooks: `useDebounce` and `useThrottle`. These hooks are commonly used to control how often a function executes in response to frequent events, such as user input.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🧠 Understand how **debouncing** and **throttling** affect user input
+- 🔧 Adjusted with a fixed delay of `1000ms`
+- 📦 Clean and minimal implementation using custom React hooks
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📂 Project Structure
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+src/
+├── App.tsx
+└── hooks/
+├── useDebounce.ts
+└── useThrottle.ts
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+yaml
+Copy
+Edit
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 📦 Getting Started
+
+1. Clone the repository or copy the files into a React project.
+2. Install dependencies if you're not using Create React App:
+   ```bash
+   npm install react react-dom typescript
+   Run the development server:
+   ```
+
+bash
+Copy
+Edit
+npm start
+🧪 How It Works
+App.tsx
+This is the main component of the app. It includes:
+
+An input field where the user types
+
+Two values displayed:
+
+debouncedValue — updates after the user stops typing for the specified delay
+
+throttledValue — updates at most once every delay interval, even if the user continues typing
+
+tsx
+Copy
+Edit
+const delay = 1000
+const debouncedValue = useDebounce(search, delay)
+const throttledValue = useThrottle(search, delay)
+🕒 useDebounce Hook
+ts
+Copy
+Edit
+export function useDebounce<T>(value: T, delay: number): T
+Waits for the user to stop typing for a given time before updating the value.
+
+Useful for delaying execution until the action has "settled" (e.g., search input).
+
+🧠 Real-world examples:
+
+Search box suggestions
+
+Validating a form field after the user stops typing
+
+🕓 useThrottle Hook
+ts
+Copy
+Edit
+export function useThrottle<T>(value: T, limit: number): T
+Ensures the value updates at most once every limit milliseconds.
+
+Useful when you want to limit execution frequency, regardless of user speed.
+
+🧠 Real-world examples:
+
+Handling scroll or resize events
+
+Auto-saving form input periodically
+
+📊 Output Example
+pgsql
+Copy
+Edit
+User types: "Hello"
+Debounced Value: (waits for 1s after stopping)
+Throttled Value: updates every 1s during typing
+🧼 License
+This project is free and open-source under the MIT License.
+
+✍️ Author
+Created by a React developer interested in teaching core frontend concepts through hands-on demos.
+
+yaml
+Copy
+Edit
+
+---
+
+Would you like me to bundle this with example screenshots or a CodeSandbox link preview section?
