@@ -1,0 +1,14 @@
+* {
+  font-family: sans-serif;
+}
+
+input {
+  padding: 12px 24px;
+  font-size: 24px;
+}
+
+.value__container {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
